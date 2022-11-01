@@ -1,41 +1,165 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+
+
+.App {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15vh;
+  height: 100%;
+  width: 100%;
+}
+
+.header{
+  display: table-column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 7vh;
+  width: 100%;
+  cursor: default;
+}
+
+.header > h1 {
+  width: 100%;
+  font-size: 2vh;
+  color: #fff;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.header > h3 {
+  width: 100%;
+  font-size: 2vh;
+  color: rgba(255, 255, 255, 0.384);
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  text-align: center;
+  transition: all 1s ease;
+}
+
+.header > h3 > span {
+  font-weight:bold ;
+}
+
+.header > h1 > span {
+  font-weight: 800;
+}
+
+.header > h1 > span:hover {
+  font-style: italic;
+  transition: font-style 1s cubic-bezier(0,.54,.03,.99);
+}
+
+.color-box{
+  width: 20vh;
+  height: 20vh;
+  border-radius: 18px;
+  
+}
+
+
+
+.buttons-container{
+  position: relative;
+  margin-top: 5.5vh;
+  display: grid;
+  justify-content: space-around;
+  width: 20vh;
+  
+}
+
+button{
+  width: 15vh;
+  height: 5vh;
+  border-radius: 5px;
+  border: solid;
+  background-color: rgb(20, 20, 20);
+  color: white;
+  font-size: 1.5vh;
+  margin: 1vh 0;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+button:hover {
+  background-color: rgb(40, 40, 40);
+  box-shadow: 0px 0px 30px 10px rgb(61, 61, 61);
+  transition: background-color 0.1s cubic-bezier(0,.95,.52,.99), box-shadow 0.3s cubic-bezier(0,.95,.52,.99), font-style 1s cubic-bezier(0,.54,.03,.99);
+  font-style: italic;
+  
+}
+
+button:active {
+  background-color: rgb(60, 60, 60);
+  box-shadow: 0px 0px 30px 10px rgb(109, 109, 109)
+}
+
+
+.game-info {
+  display: inline-flex;
+  justify-content: center;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+}
+.game-info > div > p {
+  margin-top: -1vh;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.game-info > div + div {
+  margin-left: 2vh;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.correct {
+  color: green;
+  font-weight: 400;
+  transition: all 0.5s cubic-bezier(0,1.02,.49,1.01);
+}
+
+.happy {
+  animation: happy 0.5s;
+  animation-iteration-count: 1;
+}
+
+.hurt {
+  color: red;
+  font-weight: 400;
+  transition: all 0.5s cubic-bezier(0,1.02,.49,1.01);
+}
+
+.shake {
+  animation: shake 0.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes happy {
+  0%{
+    transform: translateY(0)
   }
-  to {
-    transform: rotate(360deg);
+  25%{
+    transform: translateY(3px);
+  }
+  50%{
+    transform: translateY(-3px);
+  }
+  100%{
+    transform: translateY(0px);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+@keyframes shake{
+  0%{
+    transform: translateX(0)
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  25%{
+    transform: translateX(3px);
+  }
+  50%{
+    transform: translateX(-3px);
+  }
+  100%{
+    transform: translateX(0px);
+  }
 }
