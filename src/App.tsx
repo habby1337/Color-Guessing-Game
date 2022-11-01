@@ -19,11 +19,13 @@ function App() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [result, setResult] = useState<Result | undefined>(undefined);
 
-  const [score, setScore] = useState<number>(0);
+  // const [totalScore, setTotalScore] = useState<number>(0); //TODO: change to 0
+  const [score, setScore] = useState<number>(0); //TODO: change to 0
   const [life, setLife] = useState<number>(3);
 
 
   const generateColors = () => {
+    
     const corretAnswer = getRandomHEXColor();
     setColor(corretAnswer)
     setAnswers([corretAnswer, getRandomHEXColor(), getRandomHEXColor()].sort(() => Math.random() - 0.5))
@@ -31,21 +33,64 @@ function App() {
     
   }
 
+  const checkGameStatus = () => {
+    
+    
+    // if (score >= 1) {
+    //   alert('You reached an extra life!')
+    //   setLife(life + 1)
+    //   setScore(0)
+    // }
+    if (life === 0) {
+      alert(`Game over! Your score is ${score}`)
+      setScore(0)
+      // setTotalScore(0)
+      setLife(3)
+    }
+    // console.log(`Total Score: ${totalScore}, Score: ${score}, Life: ${life}`);
+  }
+
 
 
   useEffect(() => {
     generateColors();
+    
   }, []);
 
   const handleAnswerClick = (answer: string) => {
     if (answer === color) {
       
       setResult(Result.Correct)
+      setScore(score + 1)
+      
+
+      document.getElementsByClassName('score')[0].classList.add('correct')
+      document.getElementsByClassName('score')[0].classList.add('happy')
+      setTimeout(() => {
+        document.getElementsByClassName('score')[0].classList.remove('correct')
+        document.getElementsByClassName('score')[0].classList.remove('happy')
+      }, 1000)
+
       generateColors();
 
     } else {
+      setLife(life - 1 );
+      
+
+      document.getElementsByClassName('life')[0].classList.add('shake');
+      document.getElementsByClassName('life')[0].classList.add('hurt');
+
+      setTimeout(() => {
+        document.getElementsByClassName('life')[0].classList.remove('shake');
+        document.getElementsByClassName('life')[0].classList.remove('hurt');
+      }, 1000)
+
       setResult(Result.Wrong)
+      
+      
     }
+    checkGameStatus();
+    
   }
 
   return (
